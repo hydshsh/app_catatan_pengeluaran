@@ -1,6 +1,5 @@
 import 'package:app_catatan_pengeluaran/models/expense_model.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem(this.expense, {super.key});
