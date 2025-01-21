@@ -9,12 +9,8 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formatNumber =
-        NumberFormat.currency(symbol: 'Rp. ', decimalDigits: 2)
-            .format(expense.amount);
-
     return Card(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 10,
       ),
@@ -23,34 +19,20 @@ class ExpenseItem extends StatelessWidget {
         child: Column(
           children: [
             Text(expense.title),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               children: [
-                Text(formatNumber),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.gamepad_rounded),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            expense.category.toString(),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        expense.date.toString(),
-                      ),
-                    ],
-                  ),
-                )
+                Text(expense.amountExpense),
+                const Spacer(),
+                Icon(categoryIcons[expense.category]),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  expense.formattedDate,
+                ),
               ],
             )
           ],
