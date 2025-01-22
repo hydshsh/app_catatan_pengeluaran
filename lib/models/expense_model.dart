@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
-final uuid = Uuid();
+const uuid = Uuid();
 final formatterAmount = NumberFormat.currency(symbol: 'Rp. ');
-enum Category {food, shopping, entertainment, household, transportation, health}
+enum Category {Food, Shopping, Entertainment, Household, Transportation, Health}
 const categoryIcons = {
-  Category.food: Icons.dining,
-  Category.shopping: Icons.shopping_bag,
-  Category.entertainment: Icons.shop,
-  Category.household: Icons.house,
-  Category.transportation: Icons.emoji_transportation,
-  Category.health: Icons.health_and_safety,
+  Category.Food: Icons.dining,
+  Category.Shopping: Icons.shopping_bag,
+  Category.Entertainment: Icons.shop,
+  Category.Household: Icons.house,
+  Category.Transportation: Icons.emoji_transportation,
+  Category.Health: Icons.health_and_safety,
 };
 final formatterDate = DateFormat('dd/MM/yy');
 
@@ -21,9 +21,9 @@ class Expense {
     required this.amount,
     required this.date,
     required this.category,
-  }) : Id = uuid.v4(); // ini namanya Initializer List
+  }) : id = uuid.v4(); // ini namanya Initializer List
 
-  final String Id;
+  final String id;
   final String title;
   final double amount;
   final DateTime date;

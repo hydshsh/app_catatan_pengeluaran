@@ -16,17 +16,17 @@ class _ExpensesState extends State<Expenses> {
         title: 'Beli EAFC 25 Steam',
         amount: 95000,
         date: DateTime.now(),
-        category: Category.entertainment),
+        category: Category.Entertainment),
     Expense(
         title: 'Grab Tomoro Coffee',
         amount: 25000,
         date: DateTime.now(),
-        category: Category.food),
+        category: Category.Food),
     Expense(
         title: 'Beli Benoson-N',
         amount: 40000,
         date: DateTime.now(),
-        category: Category.health),
+        category: Category.Health),
   ];
 
   void _openAddExpenseOverlay() {

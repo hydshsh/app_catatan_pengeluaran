@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:app_catatan_pengeluaran/models/expense_model.dart';
 
 class AddExpense extends StatefulWidget {
   const AddExpense({super.key});
@@ -10,15 +12,24 @@ class AddExpense extends StatefulWidget {
 class _AddExpenseState extends State<AddExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  DateTime? _selectedDate;
+  Category _selectedCategory = Category.Food;
 
-  void _openDatePicker() {
+  void _openDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(
       now.year - 1,
       now.month,
       now.day,
     );
-    showDatePicker(context: context, firstDate: firstDate, lastDate: now);
+    final datePicked = await showDatePicker(
+      context: context,
+      firstDate: firstDate,
+      lastDate: now,
+    );
+    setState(() {
+      _selectedDate = datePicked;
+    });
   }
 
   @override
@@ -56,18 +67,47 @@ class _AddExpenseState extends State<AddExpense> {
                 ),
               ),
               Expanded(
-                child: TextButton.icon(
-                  icon: const Icon(Icons.calendar_month),
-                  onPressed: _openDatePicker,
-                  label: const Text(
-                    'Pilih Tanggal',
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: _openDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    ),
+                    Text(
+                      _selectedDate == null
+                          ? 'Belum Pilih Tanggal'
+                          : DateFormat('dd/MM/yy').format(_selectedDate!),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          category.name,
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                  print(value);
+                },
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -79,7 +119,7 @@ class _AddExpenseState extends State<AddExpense> {
                   print(_titleController.text);
                   print(_amountController.text);
                 },
-                child: const Text("Simpan Pengeluaran"),
+                child: const Text("Simpan"),
               ),
             ],
           ),
