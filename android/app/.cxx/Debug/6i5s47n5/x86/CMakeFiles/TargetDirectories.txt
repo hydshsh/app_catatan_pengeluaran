@@ -1,0 +1,2 @@
+D:/0 Project Drive/app_catatan_pengeluaran/android/app/.cxx/Debug/6i5s47n5/x86/CMakeFiles/edit_cache.dir
+D:/0 Project Drive/app_catatan_pengeluaran/android/app/.cxx/Debug/6i5s47n5/x86/CMakeFiles/rebuild_cache.dir
